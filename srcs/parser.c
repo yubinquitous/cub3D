@@ -6,7 +6,7 @@
 /*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:51:58 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/24 15:26:50 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/24 16:53:34 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,48 +65,28 @@ static int	set_color(int color[], char *line)
 	return (0);
 }
 
-static int	set_resolution(int resolution[], char *line)
+int	set_map(char ***map, char *line, int fd)
 {
-	char	**splitted;
-	int		i;
-
-	splitted = ft_split(line, ' ');
-	if (!splitted)
-		return (ERROR);
-	if (find_strarr_len(splitted) != 2)
-		return (ERROR);
-	i = -1;
-	while (splitted[++i])
-	{
-		if (!is_only_digit(splitted[i]))
-			return (ft_free(splitted));
-		resolution[i] = ft_atoi(splitted[i]);
-		if (resolution[i] < 1 || resolution[i] > 2000) //?? 나중에 수정해야함 해상도 제한
-			return (ft_free(splitted));
-	}
-	ft_free(splitted);
-	return (0);
+	
 }
 
 static int	parse_line(t_info *info, char *line, int fd)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
 		return (set_texture(&info->texture[NO], line + 3));
-	else if (ft_strncmp(line, "SO ", 3) == 0)
+	if (ft_strncmp(line, "SO ", 3) == 0)
 		return (set_texture(&info->texture[SO], line + 3));
-	else if (ft_strncmp(line, "WE ", 3) == 0)
+	if (ft_strncmp(line, "WE ", 3) == 0)
 		return (set_texture(&info->texture[WE], line + 3));
-	else if (ft_strncmp(line, "EA ", 3) == 0)
+	if (ft_strncmp(line, "EA ", 3) == 0)
 		return (set_texture(&info->texture[EA], line + 3));
-	else if (ft_strncmp(line, "R ", 2) == 0)
-		return (set_resolution(info->resolution, line + 2));
-	else if (ft_strncmp(line, "F ", 2) == 0)
+	if (ft_strncmp(line, "F ", 2) == 0)
 		return (set_color(info->floor, line + 2));
-	else if (ft_strncmp(line, "C ", 2) == 0)
+	if (ft_strncmp(line, "C ", 2) == 0)
 		return (set_color(info->ceilling, line + 2));
-	else if (ft_strncmp(skip_blank(line), "\n", 1) == 0)
+	if (ft_strncmp(line, "\n", ft_strlen(line)) == 0)
 		return (0);
-	else if (is_map_line(line))
+	if (is_map_line(line))
 		return (set_map(&info->map, line, fd));
 	else
 		return (ERROR);
@@ -118,19 +98,19 @@ void	parse_file(t_info *info, char *filename)
 	char	*line;
 
 	if (!is_cub_file(filename))
-		exit(print_error(filename, "Invalid file extension"));
+		exit(print_error("Invalid file extension"));
 	fd = open(filename, O_RDONLY);
 	if (fd == ERROR)
-		exit(print_perror(filename));
+		exit(print_perror());
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (errno)
-			exit(print_perror(NULL));
+			exit(print_perror());
 		if (!line)
 			break ;
 		if (parse_line(info, line, fd) == ERROR)
-			parse_error_handler(filename);
+			exit(print_error("Invalid file content"));
 		free(line);
 	}
 	close(fd);

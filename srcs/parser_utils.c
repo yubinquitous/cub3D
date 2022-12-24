@@ -6,7 +6,7 @@
 /*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:54:48 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/24 15:26:38 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/24 16:47:54 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,6 @@ int	set_texture(char **texture, char *line)
 	return (0);
 }
 
-int	parse_error_handler(char *filename)
-{
-	if (errno)
-		exit(print_perror(NULL));
-	exit(print_error(filename, "Invalid file content"));
-}
-
 int	is_cub_file(char *filename)
 {
 	int	len;
@@ -47,13 +40,11 @@ int	is_cub_file(char *filename)
 
 int is_map_line(char *line)
 {
-    const char  *map_set = " \n012NSEW";
+    const char  *map_charset = " \n012NSEW";
 
-    if (*line == '\0')
-        return (FALSE);
     while (*line)
     {
-        if (!ft_strchr(map_set, *line))
+        if (!ft_strchr(map_charset, *line))
             return (FALSE);
         line++;
     }

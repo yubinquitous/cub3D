@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoson <yoson@student.42.fr>                +#+  +:+       +#+        */
+/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:42:51 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/23 21:09:04 by yoson            ###   ########.fr       */
+/*   Updated: 2022/12/24 16:50:04 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,6 @@ int	has_continuous_char(char *str, char c)
 			return (TRUE);
 	}
     return (FALSE);
-}
-
-char    *skip_blank(char *str)
-{
-    while (*str)
-    {
-        if (*str != ' ')
-            return (str);
-        str++;
-    }
-    return (NULL);
 }
 
 int find_strarr_len(char **str)
