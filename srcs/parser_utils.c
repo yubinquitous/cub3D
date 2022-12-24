@@ -6,7 +6,7 @@
 /*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:54:48 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/24 16:47:54 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/24 17:48:26 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	is_cub_file(char *filename)
 	return (TRUE);
 }
 
-int is_map_line(char *line)
+int is_map_content(char *line)
 {
-    const char  *map_charset = " \n012NSEW";
+    const char  *map_charset = " 012NSEW";
 
     while (*line)
     {

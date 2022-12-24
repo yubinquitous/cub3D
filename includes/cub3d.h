@@ -6,7 +6,7 @@
 /*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:05:57 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/24 16:48:13 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/24 18:08:48 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ typedef struct s_info
 	char	**map;
 }	t_info;
 
-void	parse_file(t_info *info, const char *filename);
+void	parse_file(t_info *info, char *filename);
 
 #endif
