@@ -6,7 +6,7 @@
 /*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:05:57 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/25 05:15:47 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/25 05:22:12 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int		set_texture(char **dest, char *content);
 int		has_all_element(t_info *info);
 
 /* utils */
-int		has_continuous_char(char *str, char c);
 int 	find_strarr_len(char **str);
 int 	is_only_digit(char *str);
 int 	ft_allfree(char **str);
