@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/30 16:11:41 by kijsong           #+#    #+#              #
-#    Updated: 2022/12/24 18:23:41 by kijsong          ###   ########.fr        #
+#    Updated: 2022/12/25 05:09:02 by son-yeong-w      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,15 @@ NAME	= cub3D
 
 CC		= cc
 FLAGS	= -Wall -Wextra -Werror
+F/W     =   -framework OpenGL -framework AppKit
 RM		= rm -f
 
+INC_DIR = ./includes/
 SRC_DIR	= ./srcs/
 MLX_DIR = ./mlx/
 LIB_DIR = ./libft/
 
-SRCS	= $(wildcard *.c)
+SRCS	= $(wildcard srcs/*.c)
 OBJS	= $(SRCS:.c=.o)
 
 all: $(NAME)
@@ -28,10 +30,10 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	make -C $(MLX_DIR)
 	make -C $(LIB_DIR)
-	$(CC) $(FLAGS) -o $(NAME) $^
+	$(CC) $(FLAGS) $(F/W) $^ -L$(LIB_DIR) -lft -L$(MLX_DIR) -lmlx  -o $(NAME)
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@ -I $(INC_DIR)
 
 clean:
 	$(MAKE) clean -C $(LIB_DIR)
