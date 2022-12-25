@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/06 09:15:47 by kijsong           #+#    #+#              #
-#    Updated: 2022/09/28 23:59:11 by kijsong          ###   ########.fr        #
+#    Updated: 2022/12/26 01:50:47 by son-yeong-w      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

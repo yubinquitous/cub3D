@@ -6,11 +6,13 @@
 /*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 04:56:23 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/25 05:15:30 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/26 01:49:02 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include "cub3d.h"
 
 static int	has_continuous_comma(char *str)
@@ -26,13 +28,13 @@ static int	has_continuous_comma(char *str)
     return (FALSE);
 }
 
-int	validate_rgb(char *rgb)
+static int	check_rgb(char *rgb)
 {
 	char	**rgb_splitted;
 	int		color_depth;
 	int		i;
 	
-	if (!is_valid_content(rgb) || has_continuous_comma(rgb))
+	if (!is_valid_element(rgb) || has_continuous_comma(rgb))
 		return (ERROR);
 	rgb_splitted = ft_split(rgb, ",");
 	if (!rgb_splitted)
@@ -52,14 +54,16 @@ int	validate_rgb(char *rgb)
 	return (0);
 }
 
-int	set_rgb(int dest[], char *content)
+int	set_rgb(int dest[], char *line)
 {
 	char	*rgb;
 	char	**rgb_splitted;
 	int		i;
 
-	rgb = ft_strtrim(content, " ");
-	if (!rgb || validate_rgb(rgb) == ERROR)
+	if (*dest != -1)
+		return (ERROR);
+	rgb = ft_strtrim(line, " ");
+	if (!rgb || check_rgb(rgb) == ERROR)
 	{
 		free(rgb);
 		return (ERROR);
@@ -75,14 +79,24 @@ int	set_rgb(int dest[], char *content)
 	return (0);
 }
 
-int	set_texture(char **dest, char *content)
+int	set_texture(char **dest, char *line)
 {
 	char	*texture_path;
+	int		fd;
 
-	texture_path = ft_strtrim(content, " ");
-	if (!texture_path || !is_valid_content(texture_path))
+	if (*dest)
 		return (ERROR);
+	texture_path = ft_strtrim(line, " ");
+	if (!texture_path || !is_valid_element(texture_path))
+	{
+		free(texture_path);
+		return (ERROR);
+	}
+	fd = open(texture_path, O_RDONLY);
+	if (fd == ERROR)
+		exit(print_perror());
 	*dest = texture_path;
+	close(fd);
 	return (0);
 }
 

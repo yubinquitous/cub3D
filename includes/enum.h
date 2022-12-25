@@ -6,7 +6,7 @@
 /*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 15:04:20 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/24 15:20:09 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/25 19:40:20 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ enum e_direction
 	SO,
 	WE,
 	EA
-};
-
-enum e_resolution
-{
-	WIDTH,
-	HEIGHT
 };
 
 enum e_color

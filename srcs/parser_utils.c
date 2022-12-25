@@ -6,7 +6,7 @@
 /*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:54:48 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/25 05:09:40 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/26 01:30:23 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,12 @@
 #include <unistd.h>
 #include "cub3d.h"
 
-char	**read_file(char *filename)
+char	*read_file(int fd)
 {
 	char	*line;
 	char	*join;
 	char	*temp;
-	int		fd;
 
-	fd = open(filename, O_RDONLY);
-	if (fd == ERROR)
-		return (NULL);
 	join = ft_strdup("");
 	while (1)
 	{
@@ -36,18 +32,17 @@ char	**read_file(char *filename)
 		free(temp);
 		free(line);
 	}
-	close(fd);
-	return (ft_split(join, "\n"));
+	return (join);
 }
 
-int	is_valid_content(char *content)
+int	is_valid_element(char *line)
 {
 	size_t	i;
 
 	i = -1;
-	while (content[++i])
+	while (line[++i])
 	{
-		if (content[i] == ' ' || !ft_isprint(content[i]))
+		if (line[i] == ' ' || !ft_isprint(line[i]))
 			return (FALSE);
 	}
 	return (TRUE);
@@ -68,13 +63,15 @@ int	is_cub_file(char *filename)
  
 int is_map_content(char *line)
 {
-    const char  *charset = " 012NSEW";
+    const char  *charset = " 01NSEW\n";
 
+	if (ft_isalpha(*line))
+		return (FALSE);
     while (*line)
     {
         if (!ft_strchr(charset, *line))
             return (FALSE);
-        line++;
+		line++;
     }
     return (TRUE);
 }

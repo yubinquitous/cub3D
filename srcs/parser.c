@@ -6,83 +6,82 @@
 /*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:51:58 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/25 05:00:39 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/26 01:49:18 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include "cub3d.h"
 
-static int	parse_element(t_info *info, char *content)
+static int	parse_element(t_info *info, char *line)
 {
-	if (ft_strncmp(content, "NO ", 3) == 0)
-		return (set_texture(&info->texture[NO], content + 3));
-	if (ft_strncmp(content, "SO ", 3) == 0)
-		return (set_texture(&info->texture[SO], content + 3));
-	if (ft_strncmp(content, "WE ", 3) == 0)
-		return (set_texture(&info->texture[WE], content + 3));
-	if (ft_strncmp(content, "EA ", 3) == 0)
-		return (set_texture(&info->texture[EA], content + 3));
-	if (ft_strncmp(content, "F ", 2) == 0)
-		return (set_rgb(info->floor, content + 2));
-	if (ft_strncmp(content, "C ", 2) == 0)
-		return (set_rgb(info->ceilling, content + 2));
+	if (ft_strncmp(line, "NO ", 3) == 0)
+		return (set_texture(&info->texture[NO], line + 3));
+	if (ft_strncmp(line, "SO ", 3) == 0)
+		return (set_texture(&info->texture[SO], line + 3));
+	if (ft_strncmp(line, "WE ", 3) == 0)
+		return (set_texture(&info->texture[WE], line + 3));
+	if (ft_strncmp(line, "EA ", 3) == 0)
+		return (set_texture(&info->texture[EA], line + 3));
+	if (ft_strncmp(line, "F ", 2) == 0)
+		return (set_rgb(info->floor, line + 2));
+	if (ft_strncmp(line, "C ", 2) == 0)
+		return (set_rgb(info->ceilling, line + 2));
 	return (ERROR);
 }
 
-int		parse_elements(t_info *info, char **file_contents, int *idx)
+static int		parse_elements(t_info *info, char *filename)
 {
-	while (file_contents[*idx] && !is_map_content(file_contents[*idx]))
+	char	*buf;
+	char	**file_contents;
+	int		fd;
+	int		i;
+
+	fd = open(filename, O_RDONLY);
+	if (fd == ERROR)
+		exit(print_perror());
+	buf = read_file(fd);
+	file_contents = ft_split(buf, "\n");
+	free(buf);
+	i = -1;
+	while (file_contents[++i] && !is_map_content(file_contents[i]))
 	{
-		if (parse_element(info, file_contents[*idx]) == ERROR)
-			exit(print_error("Invalid file content"));
-		(*idx)++;
+		if (parse_element(info, file_contents[i]) == ERROR)
+			return (ft_allfree(file_contents));
 	}
+	ft_allfree(file_contents);
 	if (!has_all_element(info))
 		return (ERROR);
+	close(fd);
 	return (0);
 }
 
-int	parse_map(t_info *info, char **file_contents)
+static int	parse_map(t_info *info, char *filename)
 {
-	int	size;
-	int	i;
+	int		fd;
 
-	size = 0;
-	while (file_contents[size])
-		size++;
-	info->map = malloc(sizeof(char *) * (size + 1));
-	if (!info->map)
+	fd = open(filename, O_RDONLY);
+	if (fd == ERROR)
+		exit(print_perror());
+	if (check_map_charset(fd) == ERROR)
 		return (ERROR);
-	i = -1;
-	while (++i < size)
-		info->map[i] = ft_strdup(file_contents[i]);
-	info->map[i] = NULL;
-	return (0);
-}
-
-int	parse_file_contents(t_info *info, char **file_contents)
-{
-	int	file_contents_idx;
-
-	file_contents_idx = 0;
-	if (parse_elements(info, file_contents, &file_contents_idx) == ERROR)
-		return (ERROR);
-	if (parse_map(info, file_contents + file_contents_idx) == ERROR)
-		return (ERROR);
+	close(fd);
+	fd = open(filename, O_RDONLY);
+	if (fd == ERROR)
+		exit(print_perror());
+	info->map = get_map_array(fd);
+	// if (!info->map || !is_valid_map(info->map)) 구현해야함
+	// 	return (ERROR);					
+	close(fd);
 	return (0);
 }
 
 void	parse_file(t_info *info, char *filename)
 {
-	char	**file_contents;
-
 	if (!is_cub_file(filename))
 		exit(print_error("Invalid file extension"));
-	file_contents = read_file(filename);
-	if (!file_contents)
-		exit(print_perror());
-	if (parse_file_contents(info, file_contents) == ERROR)
+	if (parse_elements(info, filename) == ERROR || parse_map(info, filename) == ERROR)
 		exit(print_error("Invalid file content"));
-	ft_allfree(file_contents);
 }
