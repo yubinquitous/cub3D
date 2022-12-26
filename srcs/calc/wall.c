@@ -11,7 +11,7 @@ void detect_wall(t_info *info, t_raycast *raycast) {
       raycast->map_y += raycast->step_y;
       raycast->side = 1;
     }
-    if (info->worldMap[raycast->map_x][raycast->map_y] > 0)
+    if (info->map[raycast->map_x][raycast->map_y] > 0)
       break;
   }
 }

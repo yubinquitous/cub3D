@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:51:58 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/26 13:52:38 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 15:18:41 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 static int parse_element(t_info *info, char *line) {
   if (ft_strncmp(line, "NO ", 3) == 0)
-    return (set_texture(&info->texture[NO], line + 3));
+    return (set_texture(&info->texture_path[NO], line + 3));
   if (ft_strncmp(line, "SO ", 3) == 0)
-    return (set_texture(&info->texture[SO], line + 3));
+    return (set_texture(&info->texture_path[SO], line + 3));
   if (ft_strncmp(line, "WE ", 3) == 0)
-    return (set_texture(&info->texture[WE], line + 3));
+    return (set_texture(&info->texture_path[WE], line + 3));
   if (ft_strncmp(line, "EA ", 3) == 0)
-    return (set_texture(&info->texture[EA], line + 3));
+    return (set_texture(&info->texture_path[EA], line + 3));
   if (ft_strncmp(line, "F ", 2) == 0)
     return (set_rgb(info->floor, line + 2));
   if (ft_strncmp(line, "C ", 2) == 0)
@@ -68,6 +68,7 @@ static int parse_map(t_info *info, char *filename) {
   if (fd == ERROR)
     exit(print_strerror(filename));
   info->map = get_map_array(fd);
+  set_player(info);
   // if (!info->map || !is_valid_map(info->map)) 구현해야함
   // 	return (ERROR);
   close(fd);

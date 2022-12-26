@@ -1,3 +1,5 @@
 *.o
 */*.o
 .cache
+libft
+mlx

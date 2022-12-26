@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 04:56:23 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/26 13:53:54 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 14:14:14 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int set_rgb(int dest[], char *line) {
 
 int set_texture(char **dest, char *line) {
   char *texture_path;
-  int fd;
 
   if (*dest)
     return (ERROR);
@@ -84,11 +83,7 @@ int set_texture(char **dest, char *line) {
     free(texture_path);
     return (ERROR);
   }
-  fd = open(texture_path, O_RDONLY);
-  if (fd == ERROR)
-    exit(print_strerror(texture_path));
   *dest = texture_path;
-  close(fd);
   return (0);
 }
 

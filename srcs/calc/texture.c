@@ -27,7 +27,7 @@ void calc_texture(t_info *info, t_raycast *raycast, int x) {
   double wallX;
   int texX;
 
-  texNum = info->worldMap[raycast->map_x][raycast->map_y];
+  texNum = info->map[raycast->map_x][raycast->map_y];
   if (raycast->side == 0)
     wallX = info->pos_y + raycast->perp_wall_dist * raycast->ray_dir_y;
   else
