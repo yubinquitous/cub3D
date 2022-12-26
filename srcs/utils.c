@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:42:51 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/26 19:18:15 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 20:41:25 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ int is_only_digit(char *str)
     return (TRUE);
 }
 
-int ft_allfree(char **str)
+int ft_allfree(void **ptr)
 {
     int i;
 
     i = 0;
-    while (str[i])
-        free(str[i++]);
-    free(str);
+    while (ptr[i])
+        free(ptr[i++]);
+    free(ptr);
     return (ERROR);
 }
 

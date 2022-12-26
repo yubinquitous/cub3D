@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_map_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 21:11:06 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/26 19:37:25 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 19:58:21 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ void set_player(t_info *info)
 {
     int x;
     int y;
-    int player_count;
+    int num_of_player;
 
     x = -1;
-    player_count = 0;
+    num_of_player = 0;
     while (info->map[++x])
     {
         y = -1;
@@ -112,14 +112,14 @@ void set_player(t_info *info)
             {
                 info->player.pos_x = x;
                 info->player.pos_y = y;
-                player_count++;
+                num_of_player++;
                 set_player_direction(info, info->map[x][y]);
                 info->map[x][y] = '0';
             }
         }
     }
-    if (player_count == 0)
+    if (!num_of_player)
         exit(print_error("Player not exists"));
-    if (player_count > 1)
-        exit(print_error("Too many players"));
+    if (num_of_player > 1)
+  	    exit(print_error("Too many players"));
 }

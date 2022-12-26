@@ -6,7 +6,7 @@
 /*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:54:48 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/26 01:30:23 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/26 20:41:08 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,24 @@ int is_map_content(char *line)
 		line++;
     }
     return (TRUE);
+}
+
+int	**get_visited(char **map)
+{
+	int		**ret;
+	int		size;
+	int		i;
+
+	size = 0;
+	while (map[size])
+		size++;
+	ret = safe_malloc(sizeof(int *) * (size + 1));
+	i = 0;
+	while (i < size)
+	{
+		ret[i] = ft_calloc(ft_strlen(map[i]), sizeof(int));
+		i++;
+	}
+	ret[i] = NULL;
+	return (ret);
 }

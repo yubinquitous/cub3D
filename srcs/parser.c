@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:51:58 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/26 19:38:41 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 20:42:51 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int parse_element(t_info *info, char *line) {
   return (ERROR);
 }
 
-static int parse_elements(t_info *info, char *filename) {
+static void parse_elements(t_info *info, char *filename) {
   char *buf;
   char **file_contents;
   int fd;
@@ -44,41 +44,52 @@ static int parse_elements(t_info *info, char *filename) {
   i = -1;
   while (file_contents[++i] && !is_map_content(file_contents[i])) {
     if (parse_element(info, file_contents[i]) == ERROR)
-      return (ft_allfree(file_contents));
+    {
+      ft_allfree(file_contents);
+      exit(print_error("Invalid file content"));
+    }
   }
   ft_allfree(file_contents);
   if (!has_all_element(info))
-    return (ERROR);
+    exit(print_error("not enough elements"));
   close(fd);
-  return (0);
 }
 
-void  check_map(char **map, int x, int y)
+static void  check_map(char **map, int **visited, int x, int y)
 {
-  
-  check_map(map, x - 1, y);
-  check_map(map, x + 1, y);
-  check_map(map, x, y - 1);
-  check_map(map, x, y + 1);
+  if (x == -1 || y == -1 || map[x] == NULL || map[x][y] == '\0')
+    exit(print_error("not closed map"));
+  if (map[x][y] == '1' || visited[x][y] == 1)
+    return ;
+  visited[x][y] = 1;
+  check_map(map, visited, x - 1, y);
+  check_map(map, visited, x + 1, y);
+  check_map(map, visited, x, y - 1);
+  check_map(map, visited, x, y + 1);
 }
 
-static int parse_map(t_info *info, char *filename) {
-  int fd;
+static void parse_map(t_info *info, char *filename) {
+  int	  fd;
+  int  **visited;
 
+  fd = safe_open(filename);
+  if (check_map_charset(fd) == ERROR)
+    exit(print_error("Invalid map content"));
+  close(fd);
   fd = safe_open(filename);
   info->map = get_map_array(fd);
   if (!info->map)
-    return (ERROR);
+    exit(print_error("Map content not found"));
   set_player(info);
-  // check_map(info->map, info->player.pos_x, info->player.pos_y);
+  visited = get_visited(info->map);
+  check_map(info->map, visited, info->player.pos_x, info->player.pos_y);
+  ft_allfree(visited);
   close(fd);
-  return (0);
 }
 
 void parse_file(t_info *info, char *filename) {
   if (!is_cub_file(filename))
     exit(print_error("Invalid file extension"));
-  if (parse_elements(info, filename) == ERROR ||
-      parse_map(info, filename) == ERROR)
-    exit(print_error("Invalid file content"));
+  parse_elements(info, filename);
+  parse_map(info, filename);
 }

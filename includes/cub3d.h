@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:05:57 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/26 19:18:30 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 20:42:36 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ char	*read_file(int fd);
 int		is_valid_element(char *content);
 int		is_cub_file(char *filename);
 int 	is_map_content(char *line);
+int		**get_visited(char **map);
 
 /* parser_element_utils */
 int		set_rgb(int dest[], char *content);
@@ -90,12 +91,12 @@ int		has_all_element(t_info *info);
 /* parser_map_utils */
 int 	check_map_charset(int fd);
 char    **get_map_array(int fd);
-void	set_player(t_info *info);
+void 	set_player(t_info *info);
 
 /* utils */
 int 	find_strarr_len(char **str);
 int 	is_only_digit(char *str);
-int 	ft_allfree(char **str);
+int 	ft_allfree(void **ptr);
 int		safe_open(char *filename);
 
 #endif
