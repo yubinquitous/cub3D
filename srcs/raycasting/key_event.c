@@ -1,4 +1,4 @@
-#include "../includes/raycasting.h"
+#include "../../includes/raycasting.h"
 
 static void move_forward(t_info *info) {
   if (!info->worldMap[(int)(info->pos_x + info->dir_x * info->move_speed)]

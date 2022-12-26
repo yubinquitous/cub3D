@@ -1,4 +1,4 @@
-#include "../includes/raycasting.h"
+#include "../../includes/raycasting.h"
 
 void draw(t_info *info) {
   int x;

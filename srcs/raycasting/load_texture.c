@@ -1,4 +1,4 @@
-#include "../includes/raycasting.h"
+#include "../../includes/raycasting.h"
 
 static void load_image(t_info *info, int *texture, char *path, t_img *img) {
   int x;
