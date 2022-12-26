@@ -3,38 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 20:34:38 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/25 21:57:58 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/26 19:36:31 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* info print test*/
-#include <stdio.h>
-static void	test(t_info *info)
-{
-	int i;
-
-	i = -1;
-	while (++i < 4)
-		printf("texture: %d: %s\n", i, info->texture[i]);
-	i = -1;
-	printf("floor: R:%d G:%d B:%d\n", info->floor[0], info->floor[1], info->floor[2]);
-	printf("ceilling: R:%d G:%d B:%d\n", info->ceilling[0], info->ceilling[1], info->ceilling[2]);
-	while (info->map[++i])
-		printf("map content: %d: %s\n", i, info->map[i]);
-}
-/* info print test*/
-
 static void	init_info(t_info *info)
 {
 	ft_memset(info->floor, -1, sizeof(info->floor));
 	ft_memset(info->ceilling, -1, sizeof(info->ceilling));
-	ft_memset(info->texture, 0, sizeof(info->texture));
+	ft_memset(info->texture_path, 0, sizeof(info->texture_path));
 	info->map = NULL;
+	info->move_speed = 1;
+  	info->rot_speed = 0.05;
 }
 
 int	main(int argc, char *argv[])
@@ -45,6 +30,49 @@ int	main(int argc, char *argv[])
 		return (print_error("Invalid arguments"));
 	init_info(&info);
 	parse_file(&info, argv[1]);
-	test(&info);
+	// (void)argv;
+	// char map[24][24]=
+	// {
+	// {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	// {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+	// {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
+	// {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+	// {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,4,0,0,0,0,4,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	// {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+	// };
+	// for (int i = 0; i < 24; i++)
+	// {
+	// 	for (int j = 0; j < 24; j++)
+	// 	{
+	// 		map[i][j] += '0';
+	// 		info.map[i][j] = map[i][j];
+	// 	}
+	// }
+	// info.player.pos_x = 22.0;
+	// info.player.pos_y = 11.5;  //x and y start position
+  	// info.player.dir_x = -1.0;
+	// info.player.dir_y = 0.0; //initial direction vector
+  	// info.player.plane_x = 0.0;
+	// info.player.plane_y = 0.66; //the 2d raycaster version of camera plane
+
+	raycasting(&info);
 	return (0);
 }

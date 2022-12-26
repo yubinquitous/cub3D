@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+         #
+#    By: yubin <yubchoi@student.42>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/30 16:11:41 by kijsong           #+#    #+#              #
-#    Updated: 2022/12/25 05:09:02 by son-yeong-w      ###   ########.fr        #
+#    Updated: 2022/12/26 19:36:59 by yubin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME	= cub3D
 
 CC		= cc
 FLAGS	= -Wall -Wextra -Werror
-F/W     =   -framework OpenGL -framework AppKit
+DEBUG	= -g3 -fsanitize=address# TODO: remove
+F/W		= -framework OpenGL -framework AppKit
 RM		= rm -f
 
 INC_DIR = ./includes/
@@ -22,7 +23,7 @@ SRC_DIR	= ./srcs/
 MLX_DIR = ./mlx/
 LIB_DIR = ./libft/
 
-SRCS	= $(wildcard srcs/*.c)
+SRCS	= $(wildcard srcs/*.c) $(wildcard srcs/raycasting/*.c) $(wildcard srcs/calc/*.c) $(wildcard srcs/key_press/*.c)
 OBJS	= $(SRCS:.c=.o)
 
 all: $(NAME)
@@ -30,10 +31,10 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	make -C $(MLX_DIR)
 	make -C $(LIB_DIR)
-	$(CC) $(FLAGS) $(F/W) $^ -L$(LIB_DIR) -lft -L$(MLX_DIR) -lmlx  -o $(NAME)
+	$(CC) $(DEBUG) $(F/W) $^ -L$(LIB_DIR) -lft -L$(MLX_DIR) -lmlx -o $(NAME)
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $< -o $@ -I $(INC_DIR)
+	$(CC) $(DEBUG) -c $< -o $@ -I$(INC_DIR) -MJ $@.part.json
 
 clean:
 	$(MAKE) clean -C $(LIB_DIR)
@@ -48,4 +49,8 @@ re:
 	make fclean
 	make all
 
-PHONY: all clean fclean re
+compile_commands.json:
+	-$(MAKE) --always-make --keep-going all
+	(echo '[' && cat srcs/*.part.json && echo ']') > $@
+
+.PHONY: all clean fclean re compile_commands.json

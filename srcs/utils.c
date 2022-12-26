@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:42:51 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/26 00:39:31 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/26 19:18:15 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <fcntl.h>
 #include "cub3d.h"
 
 int find_strarr_len(char **str)
@@ -43,4 +44,14 @@ int ft_allfree(char **str)
         free(str[i++]);
     free(str);
     return (ERROR);
+}
+
+int safe_open(char *filename)
+{
+    int fd;
+
+    fd = open(filename, O_RDONLY);
+    if (fd == ERROR)
+        exit(print_strerror(filename));
+    return (fd);
 }
