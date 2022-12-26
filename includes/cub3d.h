@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:05:57 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/26 15:19:07 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 19:18:30 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 typedef struct s_img {
   void *img_ptr;
-  char *data;
+  int *data;
   int size_l;
   int bpp;
   int endian;
@@ -54,7 +54,7 @@ typedef struct s_game
 	t_img img;
 	int buf[WINDOW_HEIGHT][WINDOW_WIDTH];
 	int texture[TEX_COUNT][TEX_SIZE];
-} t_game;
+} 	t_game;
 
 typedef struct s_info
 {
@@ -62,6 +62,7 @@ typedef struct s_info
 	int		floor[3];
 	int		ceilling[3];
 	char	**map;
+	// char	map[24][24];
 	t_player player;
 	t_game game;
 	double move_speed;
@@ -69,6 +70,7 @@ typedef struct s_info
 }	t_info;
 
 void	parse_file(t_info *info, char *filename);
+void 	raycasting(t_info *info);
 
 /* common_error */
 int		print_error(char *error_msg);
@@ -94,5 +96,6 @@ void	set_player(t_info *info);
 int 	find_strarr_len(char **str);
 int 	is_only_digit(char *str);
 int 	ft_allfree(char **str);
+int		safe_open(char *filename);
 
 #endif

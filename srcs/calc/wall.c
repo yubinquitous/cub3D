@@ -1,4 +1,5 @@
 #include "../../includes/raycasting.h"
+#include <stdio.h> //test
 
 void detect_wall(t_info *info, t_raycast *raycast) {
   while (1) {
@@ -11,19 +12,20 @@ void detect_wall(t_info *info, t_raycast *raycast) {
       raycast->map_y += raycast->step_y;
       raycast->side = 1;
     }
-    if (info->map[raycast->map_x][raycast->map_y] > 0)
+    if (info->map[raycast->map_x][raycast->map_y] != '0')
       break;
   }
+  // printf("mapX: %d\nmapY: %d\nside: %d\nrayDirX: %f\nrayDirY: %f\nstepX: %d\nstepY: %d\nposX: %f\nposY: %f\n", raycast->map_x, raycast->map_y, raycast->side, raycast->ray_dir_x, raycast->ray_dir_y, raycast->step_x, raycast->step_y, info->player.pos_x, info->player.pos_y);
 }
 
 void distance_to_wall(t_info *info, t_raycast *raycast) {
   if (raycast->side == 0)
     raycast->perp_wall_dist =
-        (raycast->map_x - info->pos_x + (1 - raycast->step_x) / 2.) /
+        (raycast->map_x - info->player.pos_x + (1 - raycast->step_x) / 2.) /
         raycast->ray_dir_x;
   else
     raycast->perp_wall_dist =
-        (raycast->map_y - info->pos_y + (1 - raycast->step_y) / 2.) /
+        (raycast->map_y - info->player.pos_y + (1 - raycast->step_y) / 2.) /
         raycast->ray_dir_y;
   raycast->line_height = (int)(WINDOW_HEIGHT / raycast->perp_wall_dist);
   raycast->draw_start = -raycast->line_height / 2 + WINDOW_HEIGHT / 2;

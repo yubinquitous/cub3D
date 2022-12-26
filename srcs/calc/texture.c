@@ -1,4 +1,5 @@
 #include "../../includes/raycasting.h"
+#include <stdio.h> //test
 
 static void coordinate_texture(t_info *info, t_raycast *raycast, int x,
                                int texNum, int texX) {
@@ -15,11 +16,14 @@ static void coordinate_texture(t_info *info, t_raycast *raycast, int x,
   while (++y < raycast->draw_end) {
     texY = (int)texPos & (TEX_HEIGHT - 1);
     texPos += step;
+    // printf("texX: %d texY: %d, texPos: %f\n", texX, texY, texPos);
     int color = info->game.texture[texNum][TEX_HEIGHT * texY + texX];
+    
     if (raycast->side == 1)
       color = (color >> 1) & 8355711;
-    info->buf[y][x] = color;
+    info->game.buf[y][x] = color;
   }
+  // exit(0);
 }
 
 void calc_texture(t_info *info, t_raycast *raycast, int x) {
@@ -27,11 +31,11 @@ void calc_texture(t_info *info, t_raycast *raycast, int x) {
   double wallX;
   int texX;
 
-  texNum = info->map[raycast->map_x][raycast->map_y];
+  texNum = info->map[raycast->map_x][raycast->map_y] - '0' - 1;
   if (raycast->side == 0)
-    wallX = info->pos_y + raycast->perp_wall_dist * raycast->ray_dir_y;
+    wallX = info->player.pos_y + raycast->perp_wall_dist * raycast->ray_dir_y;
   else
-    wallX = info->pos_x + raycast->perp_wall_dist * raycast->ray_dir_x;
+    wallX = info->player.pos_x + raycast->perp_wall_dist * raycast->ray_dir_x;
   wallX -= floor(wallX);
   texX = (int)(wallX * (double)TEX_WIDTH);
   if (raycast->side == 0 && raycast->ray_dir_x > 0)

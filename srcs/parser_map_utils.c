@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 21:11:06 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/26 15:20:18 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 16:20:10 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,18 +102,19 @@ void set_player(t_info *info)
     int player_count;
 
     x = -1;
-    y = -1;
     player_count = 0;
-    while (info->map[++y])
+    while (info->map[++x])
     {
-        while (info->map[y][++x])
+        y = -1;
+        while (info->map[x][++y])
         {
-            if (ft_strchr("NSEW", info->map[y][x]))
+            if (ft_strchr("NSEW", info->map[x][y]))
             {
                 info->player.pos_x = x;
                 info->player.pos_y = y;
                 player_count++;
-                set_player_direction(info, info->map[y][x]);
+                set_player_direction(info, info->map[x][y]);
+                info->map[x][y] = '0';
             }
         }
     }

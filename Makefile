@@ -6,7 +6,7 @@
 #    By: yubin <yubchoi@student.42>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/30 16:11:41 by kijsong           #+#    #+#              #
-#    Updated: 2022/12/26 13:58:11 by yubin            ###   ########.fr        #
+#    Updated: 2022/12/26 16:46:24 by yubin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME	= cub3D
 
 CC		= cc
 FLAGS	= -Wall -Wextra -Werror
+DEBUG	= -g3 -fsanitize=address# TODO: remove
 F/W		= -framework OpenGL -framework AppKit
 RM		= rm -f
 
@@ -22,7 +23,7 @@ SRC_DIR	= ./srcs/
 MLX_DIR = ./mlx/
 LIB_DIR = ./libft/
 
-SRCS	= $(wildcard srcs/*.c)
+SRCS	= $(wildcard srcs/*.c) $(wildcard srcs/raycasting/*.c) $(wildcard srcs/calc/*.c)
 OBJS	= $(SRCS:.c=.o)
 
 all: $(NAME)
@@ -30,10 +31,10 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	make -C $(MLX_DIR)
 	make -C $(LIB_DIR)
-	$(CC) $(FLAGS) $(F/W) $^ -L$(LIB_DIR) -lft -L$(MLX_DIR) -lmlx -o $(NAME)
+	$(CC) $(DEBUG) $(F/W) $^ -L$(LIB_DIR) -lft -L$(MLX_DIR) -lmlx -o $(NAME)
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $< -o $@ -I$(INC_DIR) -MJ $@.part.json
+	$(CC) $(DEBUG) -c $< -o $@ -I$(INC_DIR) -MJ $@.part.json
 
 clean:
 	$(MAKE) clean -C $(LIB_DIR)
