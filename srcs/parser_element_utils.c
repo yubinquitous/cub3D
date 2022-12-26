@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 04:56:23 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/26 20:47:04 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 21:28:01 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ static int check_rgb(char *rgb) {
   if (!rgb_splitted)
     return (ERROR);
   if (find_strarr_len(rgb_splitted) != 3)
-    return (ft_allfree(rgb_splitted));
+    return (ft_allfree((void *)rgb_splitted));
   i = -1;
   while (rgb_splitted[++i]) {
     if (!is_only_digit(rgb_splitted[i]))
-      return (ft_allfree(rgb_splitted));
+      return (ft_allfree((void *)rgb_splitted));
     color_depth = ft_atoi(rgb_splitted[i]);
-    if (color_depth == ERROR || color_depth > 255)
-      return (ft_allfree(rgb_splitted));
+    if (color_depth > 255)
+      return (ft_allfree((void *)rgb_splitted));
   }
-  ft_allfree(rgb_splitted);
+  ft_allfree((void *)rgb_splitted);
   return (0);
 }
 
@@ -69,7 +69,7 @@ int set_rgb(int dest[], char *line) {
   while (rgb_splitted[++i])
     dest[i] = ft_atoi(rgb_splitted[i]);
   free(rgb);
-  ft_allfree(rgb_splitted);
+  ft_allfree((void *)rgb_splitted);
   return (0);
 }
 

@@ -47,7 +47,8 @@ void raycasting(t_info *info) {
 
   game = &(info->game);
   game->mlx = mlx_init();
-  // TODO: plane_x, plane_y 초기화
+  if (!game->mlx)
+    print_error("mlx_init() failed");
   init_plane(&(info->player));
   load_texture(info);
   game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "mlx");
