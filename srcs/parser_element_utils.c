@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 04:56:23 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/26 21:28:01 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 21:46:49 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ int has_all_element(t_info *info) {
   size_t i;
 
   i = -1;
-  while (++i < sizeof(info->game.texture) / sizeof(char *)) {
-    if (!info->game.texture[i])
+  while (++i < sizeof(info->texture_path) / sizeof(char *)) {
+    if (!info->texture_path[i])
       return (FALSE);
   }
   i = -1;

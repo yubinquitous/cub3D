@@ -48,15 +48,17 @@ void raycasting(t_info *info) {
   game = &(info->game);
   game->mlx = mlx_init();
   if (!game->mlx)
-    print_error("mlx_init() failed");
+    exit(print_error("mlx_init() failed"));
   init_plane(&(info->player));
   load_texture(info);
   game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "mlx");
+  if (!game->win)
+    exit(print_error("mlx_new_window() failed"));
   game->img.img_ptr = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+  if (!game->img.img_ptr)
+    exit(print_error("mlx_new_image() failed"));
   game->img.data = (int *)mlx_get_data_addr(game->img.img_ptr, &game->img.bpp,
                                            &game->img.size_l, &game->img.endian);
-
-
   mlx_loop_hook(game->mlx, main_loop, info);
   mlx_hook(game->win, X_EVENT_KEY_PRESS, 0, key_press, info);
   mlx_loop(game->mlx);

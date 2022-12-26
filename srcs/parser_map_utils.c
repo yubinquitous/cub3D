@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   parser_map_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: nubiyi@eubch i           >                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 21:11:06 by son-yeong-w       #+#    #+#             */
 /*   Updated: 2022/12/26 21:08:16 by yubin            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+#include <stdlib.h>
+#include <unistd.h>
+#include "cub3d.h"
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
