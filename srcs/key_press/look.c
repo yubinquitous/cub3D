@@ -1,6 +1,6 @@
 #include "raycasting.h"
 
-void look_left(t_info *info)
+void look_right(t_info *info)
 {
 	t_player *player;
 	double	oldDirX;
@@ -19,7 +19,7 @@ void look_left(t_info *info)
 		oldPlaneX * sin(info->rot_speed) + player->plane_y * cos(info->rot_speed);
 }
 
-void look_right(t_info *info)
+void look_left(t_info *info)
 {
 	t_player *player;
 	double oldDirX;

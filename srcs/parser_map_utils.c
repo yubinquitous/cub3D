@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 21:11:06 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/26 19:37:25 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 20:16:30 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,23 @@ static void set_player_direction(t_info *info, char dir)
 {
     if (dir == 'N')
     {
-        info->player.dir_x = 0;
-        info->player.dir_y = 1;
+        info->player.dir_x = -1;
+        info->player.dir_y = 0;
     }
     else if (dir == 'S')
-    {
-        info->player.dir_x = 0;
-        info->player.dir_y = -1;
-    }
-    else if (dir == 'E')
     {
         info->player.dir_x = 1;
         info->player.dir_y = 0;
     }
+    else if (dir == 'E')
+    {
+        info->player.dir_x = 0;
+        info->player.dir_y = 1;
+    }
     else if (dir == 'W')
     {
-        info->player.dir_x = -1;
-        info->player.dir_y = 0;
+        info->player.dir_x = 0;
+        info->player.dir_y = -1;
     }
 }
 
@@ -110,8 +110,8 @@ void set_player(t_info *info)
         {
             if (ft_strchr("NSEW", info->map[x][y]))
             {
-                info->player.pos_x = x;
-                info->player.pos_y = y;
+                info->player.pos_x = x + 0.5;
+                info->player.pos_y = y + 0.5;
                 player_count++;
                 set_player_direction(info, info->map[x][y]);
                 info->map[x][y] = '0';

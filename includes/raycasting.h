@@ -33,12 +33,12 @@ typedef struct s_raycast {
   int     draw_end;
 } t_raycast;
 
-int main_loop(t_info *info);
+int   main_loop(t_info *info);
 int   key_press(int key, t_info *info);
 void  move_forward(t_info *info);
 void  move_backward(t_info *info);
-// void  move_left(t_info *info);
-// void  move_right(t_info *info);
+void  move_left(t_info *info);
+void  move_right(t_info *info);
 void  look_left(t_info *info);
 void  look_right(t_info *info);
 

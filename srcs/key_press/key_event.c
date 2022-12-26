@@ -5,10 +5,10 @@ int key_press(int key, t_info *info) {
     move_forward(info);
   else if (key == K_S)
     move_backward(info);
-  // else if (key == K_D)
-  //   move_right(info);
-  // else if (key == K_A)
-  //   move_left(info);
+  else if (key == K_D)
+    move_right(info);
+  else if (key == K_A)
+    move_left(info);
   else if (key == K_AR_L)
     look_left(info);
   else if (key == K_AR_R)
