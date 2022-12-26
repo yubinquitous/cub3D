@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enum.h                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
+/*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 15:04:20 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/25 19:40:20 by son-yeong-w      ###   ########.fr       */
+/*   Created: 2022/07/06 10:17:02 by kijsong           #+#    #+#             */
+/*   Updated: 2022/10/14 09:34:23 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUM_H
-# define ENUM_H
+#include "../../include/ft_string.h"
 
-enum e_bool
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	FALSE,
-	TRUE
-};
+	char	*d;
 
-enum e_direction
-{
-	NO,
-	SO,
-	WE,
-	EA
-};
-
-enum e_color
-{
-	R,
-	G,
-	B
-};
-
-#endif
+	d = dest;
+	if (size--)
+	{
+		while (size-- && *src)
+			*dest++ = *src++;
+		*dest = '\0';
+	}
+	return (dest - d + ft_strlen(src));
+}

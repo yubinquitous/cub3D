@@ -1,37 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enum.h                                             :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
+/*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 15:04:20 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/25 19:40:20 by son-yeong-w      ###   ########.fr       */
+/*   Created: 2022/07/06 10:20:27 by kijsong           #+#    #+#             */
+/*   Updated: 2022/08/23 04:40:51 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUM_H
-# define ENUM_H
+#include "../../include/ft_ctype.h"
 
-enum e_bool
+int	ft_tolower(int c)
 {
-	FALSE,
-	TRUE
-};
-
-enum e_direction
-{
-	NO,
-	SO,
-	WE,
-	EA
-};
-
-enum e_color
-{
-	R,
-	G,
-	B
-};
-
-#endif
+	if (ft_isupper(c))
+		c += 'a' - 'A';
+	return (c);
+}

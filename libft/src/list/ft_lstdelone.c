@@ -1,37 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enum.h                                             :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
+/*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 15:04:20 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/25 19:40:20 by son-yeong-w      ###   ########.fr       */
+/*   Created: 2022/08/23 09:30:45 by kijsong           #+#    #+#             */
+/*   Updated: 2022/09/19 13:00:51 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUM_H
-# define ENUM_H
+#include "../../include/ft_list.h"
+#include "../../include/ft_stdlib.h"
 
-enum e_bool
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	FALSE,
-	TRUE
-};
-
-enum e_direction
-{
-	NO,
-	SO,
-	WE,
-	EA
-};
-
-enum e_color
-{
-	R,
-	G,
-	B
-};
-
-#endif
+	del(lst->content);
+	ft_free((void *)&lst);
+}

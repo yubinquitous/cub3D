@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enum.h                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
+/*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 15:04:20 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/25 19:40:20 by son-yeong-w      ###   ########.fr       */
+/*   Created: 2022/07/06 10:52:04 by kijsong           #+#    #+#             */
+/*   Updated: 2022/09/01 02:09:20 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUM_H
-# define ENUM_H
+#include <stddef.h>
 
-enum e_bool
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	FALSE,
-	TRUE
-};
-
-enum e_direction
-{
-	NO,
-	SO,
-	WE,
-	EA
-};
-
-enum e_color
-{
-	R,
-	G,
-	B
-};
-
-#endif
+	if (!n--)
+		return (0);
+	while (n && *s1 && *s1 == *s2)
+	{
+		n--;
+		s1++;
+		s2++;
+	}
+	return (*(const unsigned char *)s1 - *(const unsigned char *)s2);
+}

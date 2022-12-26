@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enum.h                                             :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
+/*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 15:04:20 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/25 19:40:20 by son-yeong-w      ###   ########.fr       */
+/*   Created: 2022/07/06 11:18:56 by kijsong           #+#    #+#             */
+/*   Updated: 2022/10/18 14:23:39 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUM_H
-# define ENUM_H
+#include <unistd.h>
 
-enum e_bool
+int	ft_putchar_fd(int c, int fd)
 {
-	FALSE,
-	TRUE
-};
-
-enum e_direction
-{
-	NO,
-	SO,
-	WE,
-	EA
-};
-
-enum e_color
-{
-	R,
-	G,
-	B
-};
-
-#endif
+	c = (unsigned char)c;
+	if (write(fd, &c, 1) < 0)
+		return (-1);
+	return (c);
+}

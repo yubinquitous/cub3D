@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enum.h                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
+/*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 15:04:20 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/25 19:40:20 by son-yeong-w      ###   ########.fr       */
+/*   Created: 2022/07/06 11:14:15 by kijsong           #+#    #+#             */
+/*   Updated: 2022/10/12 11:54:14 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUM_H
-# define ENUM_H
+#include <stdlib.h>
+#include "../../include/ft_string.h"
 
-enum e_bool
+char	*ft_strdup(const char *s)
 {
-	FALSE,
-	TRUE
-};
+	char	*dup;
+	size_t	size;
 
-enum e_direction
-{
-	NO,
-	SO,
-	WE,
-	EA
-};
-
-enum e_color
-{
-	R,
-	G,
-	B
-};
-
-#endif
+	size = ft_strlen(s) + 1;
+	dup = malloc(size);
+	if (!dup)
+		return (NULL);
+	return (ft_memcpy(dup, s, size));
+}

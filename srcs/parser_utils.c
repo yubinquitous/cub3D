@@ -6,23 +6,46 @@
 /*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:54:48 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/24 17:48:26 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/26 01:30:23 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <errno.h>
 #include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include "cub3d.h"
 
-int	set_texture(char **texture, char *line)
+char	*read_file(int fd)
 {
-	char	*texture_path;
+	char	*line;
+	char	*join;
+	char	*temp;
 
-	texture_path = ft_strtrim(line, " ");
-	if (!texture_path || ft_strchr(texture_path, ' '))
-		return (ERROR);
-	*texture = texture_path;
-	return (0);
+	join = ft_strdup("");
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		temp = join;
+		join = ft_strjoin(join, line);
+		free(temp);
+		free(line);
+	}
+	return (join);
+}
+
+int	is_valid_element(char *line)
+{
+	size_t	i;
+
+	i = -1;
+	while (line[++i])
+	{
+		if (line[i] == ' ' || !ft_isprint(line[i]))
+			return (FALSE);
+	}
+	return (TRUE);
 }
 
 int	is_cub_file(char *filename)
@@ -37,16 +60,18 @@ int	is_cub_file(char *filename)
 		return (FALSE);
 	return (TRUE);
 }
-
+ 
 int is_map_content(char *line)
 {
-    const char  *map_charset = " 012NSEW";
+    const char  *charset = " 01NSEW\n";
 
+	if (ft_isalpha(*line))
+		return (FALSE);
     while (*line)
     {
-        if (!ft_strchr(map_charset, *line))
+        if (!ft_strchr(charset, *line))
             return (FALSE);
-        line++;
+		line++;
     }
     return (TRUE);
 }
