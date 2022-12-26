@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:42:51 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/26 21:06:50 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/27 02:24:26 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int find_strarr_len(char **str)
     return (len);   
 }
 
-int is_only_digit(char *str)
+int has_only_digit(char *str)
 {
     while (*str)
     {

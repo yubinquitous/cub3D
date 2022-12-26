@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_map_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:56:35 by yubin             #+#    #+#             */
-/*   Updated: 2022/12/26 21:56:39 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/27 02:26:36 by son-yeong-w      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,15 @@ static void set_player_direction(t_info *info, char dir)
     }
 }
 
-int check_map_charset(int fd)
+void    check_map_charset(char *filename)
 {
+    int     fd;
     char    *line;
 
+    fd = safe_open(filename);
     line = get_map_line(fd);
     if (!line)
-        return (ERROR);
+        exit(print_error("Map content not exists"));
     free(line);
     while (1)
     {
@@ -70,32 +72,32 @@ int check_map_charset(int fd)
         if (!line)
             break ;
         if (*line == '\n' || !is_map_content(line))
-        {
-            free(line);
-            return (ERROR);
-        }
+            exit(print_error("Invalid map content"));
         free(line);
     }
-    return (0);
+    close(fd);
 }
 
-char    **get_map_array(int fd)
+char    **get_map(char *filename)
 {
-    char	*first_line;
-	char	*buf;
-	char	*join;
-    char    **map;
+    int     fd;
+    char	*first_line_of_map;
+	char	*remaining_line_of_map;
+	char	*map;
+    char    **ret;
 
-    first_line = get_map_line(fd);
-    if (!first_line)
-        return (NULL);
-	buf = read_file(fd);
-	join = ft_strjoin(first_line, buf);
-	free(first_line);
-	free(buf);
-	map = ft_split(join, "\n");
-	free(join);
-    return (map);
+    fd = safe_open(filename);
+    first_line_of_map = get_map_line(fd);
+    if (!first_line_of_map)
+        exit(print_error("Map content not found"));
+	remaining_line_of_map = read_file(fd);
+	map = ft_strjoin(first_line_of_map, remaining_line_of_map);
+	free(first_line_of_map);
+	free(remaining_line_of_map);
+	ret = ft_split(map, "\n");
+	free(map);
+    close(fd);
+    return (ret);
 }
 
 void set_player(t_info *info)
