@@ -6,13 +6,13 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:42:51 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/26 19:18:15 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 20:39:47 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <fcntl.h>
 #include "cub3d.h"
+#include <fcntl.h>
+#include <stdlib.h>
 
 int find_strarr_len(char **str)
 {

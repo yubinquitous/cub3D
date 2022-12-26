@@ -1,5 +1,30 @@
-#include "../../includes/raycasting.h"
-#include <stdio.h> //test
+#include "raycasting.h"
+
+static void draw_ceiling(t_info *info, t_raycast *raycast, int x) {
+  int y;
+
+  y = -1;
+  while (++y < raycast->draw_start)
+  {
+    info->game.buf[y][x] = 0x00000000;
+    info->game.buf[y][x] += info->ceiling[0] << 16;
+    info->game.buf[y][x] += info->ceiling[1] << 8;
+    info->game.buf[y][x] += info->ceiling[2];
+  }
+}
+
+static void draw_floor(t_info *info, t_raycast *raycast, int x) {
+  int y;
+
+  y = raycast->draw_end - 1;
+  while (++y < WINDOW_HEIGHT)
+  {
+    info->game.buf[y][x] = 0x00000000;
+    info->game.buf[y][x] += info->floor[0] << 16;
+    info->game.buf[y][x] += info->floor[1] << 8;
+    info->game.buf[y][x] += info->floor[2];
+  }
+}
 
 static void coordinate_texture(t_info *info, t_raycast *raycast, int x,
                                int texNum, int texX) {
@@ -7,23 +32,23 @@ static void coordinate_texture(t_info *info, t_raycast *raycast, int x,
   double texPos;
   int texY;
   int y;
+  int color;
 
   step = 1.0 * TEX_HEIGHT / raycast->line_height;
   texPos =
       (raycast->draw_start - WINDOW_HEIGHT / 2. + raycast->line_height / 2.) *
       step;
+  draw_ceiling(info, raycast, x);
+  draw_floor(info, raycast, x);
   y = raycast->draw_start - 1;
   while (++y < raycast->draw_end) {
     texY = (int)texPos & (TEX_HEIGHT - 1);
     texPos += step;
-    // printf("texX: %d texY: %d, texPos: %f\n", texX, texY, texPos);
-    int color = info->game.texture[texNum][TEX_HEIGHT * texY + texX];
-    
+    color = info->game.texture[texNum][TEX_HEIGHT * texY + texX];
     if (raycast->side == 1)
       color = (color >> 1) & 8355711;
     info->game.buf[y][x] = color;
   }
-  // exit(0);
 }
 
 void calc_texture(t_info *info, t_raycast *raycast, int x) {

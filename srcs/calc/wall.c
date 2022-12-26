@@ -1,5 +1,4 @@
-#include "../../includes/raycasting.h"
-#include <stdio.h> //test
+#include "raycasting.h"
 
 void detect_wall(t_info *info, t_raycast *raycast) {
   while (1) {
@@ -15,7 +14,6 @@ void detect_wall(t_info *info, t_raycast *raycast) {
     if (info->map[raycast->map_x][raycast->map_y] != '0')
       break;
   }
-  // printf("mapX: %d\nmapY: %d\nside: %d\nrayDirX: %f\nrayDirY: %f\nstepX: %d\nstepY: %d\nposX: %f\nposY: %f\n", raycast->map_x, raycast->map_y, raycast->side, raycast->ray_dir_x, raycast->ray_dir_y, raycast->step_x, raycast->step_y, info->player.pos_x, info->player.pos_y);
 }
 
 void distance_to_wall(t_info *info, t_raycast *raycast) {

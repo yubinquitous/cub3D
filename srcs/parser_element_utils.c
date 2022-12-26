@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 04:56:23 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/26 15:22:28 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 20:47:04 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ int has_all_element(t_info *info) {
       return (FALSE);
   }
   i = -1;
-  while (++i < sizeof(info->ceilling) / sizeof(int)) {
-    if (info->ceilling[i] == -1)
+  while (++i < sizeof(info->ceiling) / sizeof(int)) {
+    if (info->ceiling[i] == -1)
       return (FALSE);
   }
   return (TRUE);

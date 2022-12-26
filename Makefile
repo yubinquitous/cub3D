@@ -6,7 +6,7 @@
 #    By: yubin <yubchoi@student.42>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/30 16:11:41 by kijsong           #+#    #+#              #
-#    Updated: 2022/12/26 19:36:59 by yubin            ###   ########.fr        #
+#    Updated: 2022/12/26 20:46:20 by yubin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,10 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	make -C $(MLX_DIR)
 	make -C $(LIB_DIR)
-	$(CC) $(DEBUG) $(F/W) $^ -L$(LIB_DIR) -lft -L$(MLX_DIR) -lmlx -o $(NAME)
+	$(CC) $(FLAGS) $(F/W) $^ -L$(LIB_DIR) -lft -L$(MLX_DIR) -lmlx -o $(NAME)
 
 %.o: %.c
-	$(CC) $(DEBUG) -c $< -o $@ -I$(INC_DIR) -MJ $@.part.json
+	$(CC) $(FLAGS) -c $< -o $@ -I$(INC_DIR) -MJ $@.part.json
 
 clean:
 	$(MAKE) clean -C $(LIB_DIR)

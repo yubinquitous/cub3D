@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:05:57 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/26 19:18:30 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 20:42:36 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,8 @@ typedef struct s_info
 {
 	char	*texture_path[4];
 	int		floor[3];
-	int		ceilling[3];
+	int		ceiling[3];
 	char	**map;
-	// char	map[24][24];
 	t_player player;
 	t_game game;
 	double move_speed;
@@ -97,5 +96,6 @@ int 	find_strarr_len(char **str);
 int 	is_only_digit(char *str);
 int 	ft_allfree(char **str);
 int		safe_open(char *filename);
+void 	*safe_malloc(size_t size);
 
 #endif
