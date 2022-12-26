@@ -15,7 +15,7 @@ static void coordinate_texture(t_info *info, t_raycast *raycast, int x,
   while (++y < raycast->draw_end) {
     texY = (int)texPos & (TEX_HEIGHT - 1);
     texPos += step;
-    int color = info->texture[texNum][TEX_HEIGHT * texY + texX];
+    int color = info->game.texture[texNum][TEX_HEIGHT * texY + texX];
     if (raycast->side == 1)
       color = (color >> 1) & 8355711;
     info->buf[y][x] = color;
