@@ -6,7 +6,7 @@
 #    By: yubin <yubchoi@student.42>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/30 16:11:41 by kijsong           #+#    #+#              #
-#    Updated: 2022/12/26 13:19:13 by yubin            ###   ########.fr        #
+#    Updated: 2022/12/26 13:49:31 by yubin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= cub3D
 
 CC		= cc
 FLAGS	= -Wall -Wextra -Werror
-F/W     =   -framework OpenGL -framework AppKit
+F/W		= -framework OpenGL -framework AppKit
 RM		= rm -f
 
 INC_DIR = ./includes/
@@ -50,6 +50,6 @@ re:
 
 compile_commands.json:
 	-$(MAKE) --always-make --keep-going all
-	(echo '[' && cat *.part.json && echo ']') > $@
+	(echo '[' && cat srcs/*.part.json && echo ']') > $@
 
-PHONY: all clean fclean re compile_commands.json
+.PHONY: all clean fclean re compile_commands.json

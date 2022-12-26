@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:05:57 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/26 00:39:23 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/26 13:52:14 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	parse_file(t_info *info, char *filename);
 
 /* common_error */
 int		print_error(char *error_msg);
-int		print_perror(void);
+int 	print_strerror(char *arg);
 
 /* parser_utils */
 char	*read_file(int fd);

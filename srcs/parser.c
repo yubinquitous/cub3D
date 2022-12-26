@@ -1,5 +1,4 @@
-`/* **************************************************************************
-  */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
@@ -7,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:51:58 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/26 13:29:07 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 13:52:38 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +15,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-    static int
-    parse_element(t_info *info, char *line) {
+static int parse_element(t_info *info, char *line) {
   if (ft_strncmp(line, "NO ", 3) == 0)
     return (set_texture(&info->texture[NO], line + 3));
   if (ft_strncmp(line, "SO ", 3) == 0)
@@ -41,7 +39,7 @@ static int parse_elements(t_info *info, char *filename) {
 
   fd = open(filename, O_RDONLY);
   if (fd == ERROR)
-    exit(print_perror());
+    exit(print_strerror(filename));
   buf = read_file(fd);
   file_contents = ft_split(buf, "\n");
   free(buf);
@@ -62,13 +60,13 @@ static int parse_map(t_info *info, char *filename) {
 
   fd = open(filename, O_RDONLY);
   if (fd == ERROR)
-    exit(print_perror());
+    exit(print_strerror(filename));
   if (check_map_charset(fd) == ERROR)
     return (ERROR);
   close(fd);
   fd = open(filename, O_RDONLY);
   if (fd == ERROR)
-    exit(print_perror());
+    exit(print_strerror(filename));
   info->map = get_map_array(fd);
   // if (!info->map || !is_valid_map(info->map)) 구현해야함
   // 	return (ERROR);
