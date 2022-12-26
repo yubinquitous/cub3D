@@ -11,6 +11,8 @@
 # define K_S 1
 # define K_D 2
 # define K_ESC 53
+# define K_AR_L 123
+# define K_AR_R 124
 
 typedef struct s_raycast {
   double  camera_x;
@@ -32,7 +34,13 @@ typedef struct s_raycast {
 } t_raycast;
 
 int main_loop(t_info *info);
-int key_press(int key, t_info *info);
+int   key_press(int key, t_info *info);
+void  move_forward(t_info *info);
+void  move_backward(t_info *info);
+// void  move_left(t_info *info);
+// void  move_right(t_info *info);
+void  look_left(t_info *info);
+void  look_right(t_info *info);
 
 void load_texture(t_info *info);
 

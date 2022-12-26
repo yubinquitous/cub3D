@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:51:58 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/26 19:20:03 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 19:38:41 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,24 @@ static int parse_elements(t_info *info, char *filename) {
   return (0);
 }
 
-// void  check_map(char **map, int x, int y)
-// {
+void  check_map(char **map, int x, int y)
+{
   
-// }
+  check_map(map, x - 1, y);
+  check_map(map, x + 1, y);
+  check_map(map, x, y - 1);
+  check_map(map, x, y + 1);
+}
 
 static int parse_map(t_info *info, char *filename) {
   int fd;
 
   fd = safe_open(filename);
-  if (check_map_charset(fd) == ERROR)
-    return (ERROR);
-  close(fd);
-  fd = safe_open(filename);
   info->map = get_map_array(fd);
   if (!info->map)
     return (ERROR);
   set_player(info);
-  // check_map(info->map, 0, 0);
+  // check_map(info->map, info->player.pos_x, info->player.pos_y);
   close(fd);
   return (0);
 }

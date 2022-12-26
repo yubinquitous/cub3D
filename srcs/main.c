@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 20:34:38 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/26 18:22:28 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/26 19:36:31 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	init_info(t_info *info)
 	ft_memset(info->ceilling, -1, sizeof(info->ceilling));
 	ft_memset(info->texture_path, 0, sizeof(info->texture_path));
 	info->map = NULL;
-	info->move_speed = 0.05;
+	info->move_speed = 1;
   	info->rot_speed = 0.05;
 }
 

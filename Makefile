@@ -6,7 +6,7 @@
 #    By: yubin <yubchoi@student.42>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/30 16:11:41 by kijsong           #+#    #+#              #
-#    Updated: 2022/12/26 16:46:24 by yubin            ###   ########.fr        #
+#    Updated: 2022/12/26 19:36:59 by yubin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC_DIR	= ./srcs/
 MLX_DIR = ./mlx/
 LIB_DIR = ./libft/
 
-SRCS	= $(wildcard srcs/*.c) $(wildcard srcs/raycasting/*.c) $(wildcard srcs/calc/*.c)
+SRCS	= $(wildcard srcs/*.c) $(wildcard srcs/raycasting/*.c) $(wildcard srcs/calc/*.c) $(wildcard srcs/key_press/*.c)
 OBJS	= $(SRCS:.c=.o)
 
 all: $(NAME)
