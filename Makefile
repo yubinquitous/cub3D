@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yubin <yubchoi@student.42>                 +#+  +:+       +#+         #
+#    By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/30 16:11:41 by kijsong           #+#    #+#              #
-#    Updated: 2022/12/27 13:26:25 by yubin            ###   ########.fr        #
+#    Updated: 2022/12/27 15:38:10 by kijsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,12 +39,13 @@ $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(F/W) $^ -L$(LIB_DIR) -lft -L$(MLX_DIR) -lmlx -o $(NAME)
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $< -o $@ -I$(INC_DIR)
+	$(CC) $(FLAGS) -c $< -o $@ -I$(INC_DIR) -MJ $@.part.json
 
 clean:
 	$(MAKE) clean -C $(LIB_DIR)
 	$(MAKE) clean -C $(MLX_DIR)
 	$(RM) $(OBJS)
+	find ./ -name "*.json" -type f -exec $(RM) {} +
 
 fclean: clean
 	$(MAKE) fclean -C $(LIB_DIR)
@@ -54,4 +55,8 @@ re:
 	$(MAKE) fclean
 	$(MAKE) all
 
-.PHONY: all clean fclean re
+compile_commands.json:
+	-$(MAKE) --always-make --keep-going all
+	(echo '[' && cat **/*.part.json && echo ']') > $@
+
+.PHONY: all clean fclean re compile_commands.json
