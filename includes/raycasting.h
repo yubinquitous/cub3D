@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 14:00:15 by yubin             #+#    #+#             */
-/*   Updated: 2022/12/27 14:04:21 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/27 14:50:01 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_raycast
 
 int		main_loop(t_info *info);
 void	load_texture(t_info *info);
+int		exit_game(t_info *info);
 
 /* calc */
 void	update_raycast(t_info *info, t_raycast *raycast, int x);

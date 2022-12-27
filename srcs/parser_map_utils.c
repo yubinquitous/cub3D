@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_map_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:56:35 by yubin             #+#    #+#             */
-/*   Updated: 2022/12/27 14:06:58 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/27 14:40:26 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,8 @@ void	set_player(t_info *info)
 		{
 			if (ft_strchr("NSEW", info->map[x][y]))
 			{
-				info->player.pos_x = x;
-				info->player.pos_y = y;
+				info->player.pos_x = x + 0.5;
+				info->player.pos_y = y + 0.5;
 				num_of_player++;
 				set_player_direction(info, info->map[x][y]);
 				info->map[x][y] = '0';

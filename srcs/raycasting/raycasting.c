@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 13:28:29 by yubin             #+#    #+#             */
-/*   Updated: 2022/12/27 13:59:08 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/27 14:45:10 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ void	raycasting(t_info *info)
 	&game->img.bpp, &game->img.size_l, &game->img.endian);
 	mlx_loop_hook(game->mlx, main_loop, info);
 	mlx_hook(game->win, X_EVENT_KEY_PRESS, 0, key_press, info);
+	mlx_hook(game->win, X_EVENT_KEY_EXIT, 0, exit_game, info);
 	mlx_loop(game->mlx);
 }
