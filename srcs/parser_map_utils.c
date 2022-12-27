@@ -6,17 +6,14 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:56:35 by yubin             #+#    #+#             */
-/*   Updated: 2022/12/27 13:44:22 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/27 14:06:58 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "cub3d.h"
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "cub3d.h"
 
 static char	*get_map_line(int fd)
 {
