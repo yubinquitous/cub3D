@@ -6,7 +6,7 @@
 #    By: yubin <yubchoi@student.42>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/30 16:11:41 by kijsong           #+#    #+#              #
-#    Updated: 2022/12/26 21:38:11 by yubin            ###   ########.fr        #
+#    Updated: 2022/12/27 13:26:25 by yubin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIB_DIR = ./libft/
 
 CALC	= dda.c texture.c wall.c
 KEY		= key_event.c look.c move.c
-RAYCAST	= img_raycasting.c load_texture.c
+RAYCAST	= raycasting.c load_texture.c
 SRC		= common_error.c main.c parser_element_utils.c parser_map_utils.c \
 		  parser_utils.c parser.c utils.c
 

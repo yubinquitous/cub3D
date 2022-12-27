@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 20:34:38 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/27 02:26:20 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/27 13:49:47 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	init_info(t_info *info)
 	ft_memset(info->texture_path, 0, sizeof(info->texture_path));
 	info->map = NULL;
 	info->move_speed = 0.05;
-  	info->rot_speed = 0.05;
+	info->rot_speed = 0.05;
 }
 
 int	main(int argc, char *argv[])

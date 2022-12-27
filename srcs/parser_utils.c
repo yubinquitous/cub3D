@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: son-yeong-won <son-yeong-won@student.42    +#+  +:+       +#+        */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:54:48 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/27 02:03:24 by son-yeong-w      ###   ########.fr       */
+/*   Updated: 2022/12/27 13:41:07 by yubin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,20 @@ int	is_cub_file(char *filename)
 		return (FALSE);
 	return (TRUE);
 }
- 
-int is_map_content(char *line)
+
+int	is_map_content(char *line)
 {
-    const char  *charset = " 01NSEW\n";
+	const char	*charset = " 01NSEW\n";
 
 	if (ft_isalpha(*line))
 		return (FALSE);
-    while (*line)
-    {
-        if (!ft_strchr(charset, *line))
-            return (FALSE);
+	while (*line)
+	{
+		if (!ft_strchr(charset, *line))
+			return (FALSE);
 		line++;
-    }
-    return (TRUE);
+	}
+	return (TRUE);
 }
 
 int	**get_visited(char **map)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/27 14:00:15 by yubin             #+#    #+#             */
+/*   Updated: 2022/12/27 14:04:21 by yubin            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
 
@@ -14,41 +26,44 @@
 # define K_AR_L 123
 # define K_AR_R 124
 
-typedef struct s_raycast {
-  double  camera_x;
-  double  ray_dir_x;
-  double  ray_dir_y;
-  int     map_x;
-  int     map_y;
-  double  side_dist_x;
-  double  side_dist_y;
-  double  delta_dist_x;
-  double  delta_dist_y;
-  double  perp_wall_dist;
-  int     step_x;
-  int     step_y;
-  int     side;
-  int     line_height;
-  int     draw_start;
-  int     draw_end;
-} t_raycast;
+typedef struct s_raycast
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		tex_num;
+}	t_raycast;
 
-int   main_loop(t_info *info);
-int   key_press(int key, t_info *info);
-void  move_forward(t_info *info);
-void  move_backward(t_info *info);
-void  move_left(t_info *info);
-void  move_right(t_info *info);
-void  look_left(t_info *info);
-void  look_right(t_info *info);
+int		main_loop(t_info *info);
+void	load_texture(t_info *info);
 
-void load_texture(t_info *info);
+/* calc */
+void	update_raycast(t_info *info, t_raycast *raycast, int x);
+void	execute_dda(t_info *info, t_raycast *raycast);
+void	calc_texture(t_info *info, t_raycast *raycast, int x);
+void	detect_wall(t_info *info, t_raycast *raycast);
+void	distance_to_wall(t_info *info, t_raycast *raycast);
 
-// calc
-void update_raycast(t_info *info, t_raycast *raycast, int x);
-void execute_dda(t_info *info, t_raycast *raycast);
-void calc_texture(t_info *info, t_raycast *raycast, int x);
-void detect_wall(t_info *info, t_raycast *raycast);
-void distance_to_wall(t_info *info, t_raycast *raycast);
+/* key_press */
+int		key_press(int key, t_info *info);
+void	move_forward(t_info *info);
+void	move_backward(t_info *info);
+void	move_left(t_info *info);
+void	move_right(t_info *info);
+void	look_left(t_info *info);
+void	look_right(t_info *info);
 
 #endif
