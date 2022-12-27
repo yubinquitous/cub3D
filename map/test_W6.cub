@@ -1,6 +1,6 @@
-NO ./images/NO.xpm
-SO ./images/SO.xpm
-EA ./images/EA.xpm
+NO textures/barrel.xpm
+SO textures/bluestone.xpm
+EA textures/eagle.xpm
 F 00,153,15
 C 255,255,255
 
