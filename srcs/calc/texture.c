@@ -6,7 +6,7 @@
 /*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:57:26 by yubin             #+#    #+#             */
-/*   Updated: 2022/12/28 14:04:07 by kijsong          ###   ########.fr       */
+/*   Updated: 2022/12/28 17:05:09 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	calc_texture(t_info *info, t_raycast *raycast, int x)
 		wall_x = info->player.pos_x
 			+ raycast->perp_wall_dist * raycast->ray_dir_x;
 	wall_x -= floor(wall_x);
-	tex_x = (int)(wall_x * (double)TEX_WIDTH);
+	tex_x = (int)((1 - wall_x) * (double)TEX_WIDTH);
 	if (raycast->side == 0 && raycast->ray_dir_x > 0)
 		tex_x = TEX_WIDTH - tex_x - 1;
 	if (raycast->side == 1 && raycast->ray_dir_y < 0)
