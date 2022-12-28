@@ -6,7 +6,7 @@
 /*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 20:34:38 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/27 15:23:15 by kijsong          ###   ########.fr       */
+/*   Updated: 2022/12/28 16:43:48 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	init_info(t_info *info)
 	ft_memset(info->ceiling, -1, sizeof(info->ceiling));
 	ft_memset(info->texture_path, 0, sizeof(info->texture_path));
 	info->map = NULL;
-	info->move_speed = 0.05;
-	info->rot_speed = 0.05;
+	info->move_speed = 0.2;
+	info->rot_speed = 0.2;
 }
 
 int	main(int argc, char *argv[])
