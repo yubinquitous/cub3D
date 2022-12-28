@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:42:51 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/27 13:36:32 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/28 17:42:06 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,17 @@ int	safe_open(char *filename)
 	if (fd == ERROR)
 		exit(print_strerror(filename));
 	return (fd);
+}
+
+int	has_continuous_char(char *str, char c)
+{
+	while (*str)
+	{
+		str = ft_strchr(str, c);
+		if (!str)
+			break ;
+		if (*(++str) == c)
+			return (TRUE);
+	}
+	return (FALSE);
 }

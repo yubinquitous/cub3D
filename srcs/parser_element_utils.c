@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_element_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 04:56:23 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/27 13:54:24 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/28 17:44:11 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-static int	has_continuous_comma(char *str)
+static int	is_valid_rgb(char *rgb)
 {
-	while (*str)
-	{
-		str = ft_strchr(str, ',');
-		if (!str)
-			break ;
-		if (*(++str) == ',')
-			return (TRUE);
-	}
-	return (FALSE);
+	if (!is_valid_element(rgb)
+		|| has_continuous_char(rgb, ',')
+		|| rgb[0] == ','
+		|| rgb[ft_strlen(rgb) - 1] == ',')
+		return (FALSE);
+	return (TRUE);
 }
 
 static int	check_rgb(char *rgb)
@@ -34,7 +31,7 @@ static int	check_rgb(char *rgb)
 	int		color_depth;
 	int		i;
 
-	if (!is_valid_element(rgb) || has_continuous_comma(rgb))
+	if (!is_valid_rgb(rgb))
 		return (ERROR);
 	rgb_splitted = ft_split(rgb, ",");
 	if (find_strarr_len(rgb_splitted) != 3)

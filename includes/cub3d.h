@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:05:57 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/27 14:00:05 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/28 17:42:34 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,6 @@ int		find_strarr_len(char **str);
 int		has_only_digit(char *str);
 int		ft_allfree(void **ptr);
 int		safe_open(char *filename);
-void	*safe_malloc(size_t size);
+int		has_continuous_char(char *str, char c);
 
 #endif
