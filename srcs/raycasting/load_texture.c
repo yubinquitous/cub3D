@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:57:55 by yubin             #+#    #+#             */
-/*   Updated: 2022/12/27 13:57:19 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/28 13:36:10 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ static void	load_image(t_info *info, int *texture, char *path, t_img *img)
 void	load_texture(t_info *info)
 {
 	t_img	img;
+	int		i;
 
 	ft_memset(info->game.texture, 0, sizeof(info->game.texture));
-	load_image(info, info->game.texture[0], info->texture_path[0], &img);
-	load_image(info, info->game.texture[1], info->texture_path[1], &img);
-	load_image(info, info->game.texture[2], info->texture_path[2], &img);
-	load_image(info, info->game.texture[3], info->texture_path[3], &img);
+	i = -1;
+	while (++i < TEX_COUNT)
+		load_image(info, info->game.texture[i], info->texture_path[i], &img);
 }

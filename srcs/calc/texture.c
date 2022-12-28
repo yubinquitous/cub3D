@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
+/*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:57:26 by yubin             #+#    #+#             */
-/*   Updated: 2022/12/27 14:02:41 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/28 14:04:07 by kijsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,25 @@ static void	coordinate_texture(t_info *info, t_raycast *raycast,
 		tex_pos += step;
 		color
 			= info->game.texture[raycast->tex_num][TEX_HEIGHT * tex_y + tex_x];
-		if (raycast->side == 1)
-			color = (color >> 1) & 8355711;
 		info->game.buf[y][x] = color;
+	}
+}
+
+static void	set_tex_num(t_raycast *raycast)
+{
+	if (raycast->side == 0)
+	{
+		if (raycast->ray_dir_x > 0)
+			raycast->tex_num = SO;
+		else
+			raycast->tex_num = NO;
+	}
+	else
+	{
+		if (raycast->ray_dir_y > 0)
+			raycast->tex_num = EA;
+		else
+			raycast->tex_num = WE;
 	}
 }
 
@@ -72,7 +88,7 @@ void	calc_texture(t_info *info, t_raycast *raycast, int x)
 	double	wall_x;
 	int		tex_x;
 
-	raycast->tex_num = info->map[raycast->map_x][raycast->map_y] - '0' - 1;
+	set_tex_num(raycast);
 	if (raycast->side == 0)
 		wall_x = info->player.pos_y
 			+ raycast->perp_wall_dist * raycast->ray_dir_y;
