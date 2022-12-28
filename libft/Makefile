@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yubin <yubchoi@student.42>                 +#+  +:+       +#+         #
+#    By: yubchoi <yubchoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/06 09:15:47 by kijsong           #+#    #+#              #
-#    Updated: 2022/12/26 20:44:55 by yubin            ###   ########.fr        #
+#    Updated: 2022/12/28 16:56:48 by yubchoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIST = ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
 	   ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c
 STDIO = ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 		get_next_line.c
-STDLIB = ft_atoi.c ft_itoa.c safe_malloc.c ft_calloc.c ft_free.c ft_bsearch.c
+STDLIB = ft_atoi.c ft_itoa.c safe_malloc.c ft_calloc.c ft_free.c
 STRING = ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_memchr.c \
 		 ft_memcmp.c ft_strlen.c ft_strlcpy.c ft_strlcat.c ft_strspn.c \
 		 ft_strcspn.c ft_strchr.c ft_strrchr.c ft_strstr.c ft_strnstr.c \
