@@ -6,7 +6,7 @@
 /*   By: yubin <yubchoi@student.42>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:54:48 by yoson             #+#    #+#             */
-/*   Updated: 2022/12/27 13:41:07 by yubin            ###   ########.fr       */
+/*   Updated: 2022/12/30 03:35:48 by yoson            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	is_valid_element(char *line)
 {
 	size_t	i;
 
+	if (*line == '\0')
+		return (FALSE);
 	i = -1;
 	while (line[++i])
 	{

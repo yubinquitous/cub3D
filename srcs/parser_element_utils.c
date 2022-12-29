@@ -6,7 +6,7 @@
 /*   By: kijsong <kijsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 04:56:23 by son-yeong-w       #+#    #+#             */
-/*   Updated: 2022/12/28 17:44:11 by kijsong          ###   ########.fr       */
+/*   Updated: 2022/12/30 03:35:23 by yoson            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	set_rgb(int dest[], char *line)
 		exit(print_error("duplicate elements"));
 	rgb = ft_strtrim(line, " ");
 	if (check_rgb(rgb) == ERROR)
-		exit(print_error("Invalid elements"));
+		exit(print_error("Invalid element"));
 	rgb_splitted = ft_split(rgb, ",");
 	i = -1;
 	while (rgb_splitted[++i])
@@ -75,7 +75,7 @@ void	set_texture(char **dest, char *line)
 	if (*dest)
 		exit(print_error("duplicate elements"));
 	texture_path = ft_strtrim(line, " ");
-	if (*texture_path == '\0' || !is_valid_element(texture_path))
+	if (!is_valid_element(texture_path))
 		exit(print_error("Invalid element"));
 	*dest = texture_path;
 }
